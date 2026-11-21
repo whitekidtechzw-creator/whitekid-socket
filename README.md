@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="https://whitekidtechzw.netlify.app"><img src="https://img.shields.io/badge/Website-Whitekid%20Tech-0A0A0A?style=for-the-badge&logo=google-chrome&logoColor=white"/></a>
-  <a href="https://github.com/whitekid-tech"><img src="https://img.shields.io/badge/GitHub-whitekid--tech-0A0A0A?style=for-the-badge&logo=github&logoColor=white"/></a>
+  <a href="https://github.com/whitekidtechzw-creator"><img src="https://img.shields.io/badge/GitHub-whitekidtechzw--creator-0A0A0A?style=for-the-badge&logo=github&logoColor=white"/></a>
 </p>
 
 ---
@@ -990,7 +990,12 @@ if (global.autoRecording) WhitekidTech.sendPresenceUpdate('recording', from)
 
 ## Console Banner
 
-Connection events (pairing, connected, reconnect) print a short banner to the console. Silence it by passing a `pino` logger with `level: 'silent'` as usual; message sending itself prints nothing.
+`startWhitekid()` prints a gradient **WHITEKID TECHZW** banner once when it starts. Turn it off with `startWhitekid({ banner: false })`, or set the `NO_COLOR` environment variable for plain text. You can also print it yourself:
+
+```js
+import { printBanner } from 'whitekid-sockets'
+printBanner()
+```
 
 ---
 
@@ -1010,7 +1015,7 @@ Do not use this library for spam, bugs, or any malicious activity. Use it respon
 
 **Whitekid Tech**, Zimbabwe
 
-- GitHub: [whitekid-tech](https://github.com/whitekid-tech)
+- GitHub: [whitekidtechzw-creator](https://github.com/whitekidtechzw-creator)
 - Website: [whitekidtechzw.netlify.app](https://whitekidtechzw.netlify.app)
 
 <sub>© 2026 Whitekid Tech. Based on MIT-licensed work, see LICENSE.</sub>
