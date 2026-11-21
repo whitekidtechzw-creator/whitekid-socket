@@ -1,0 +1,37 @@
+name: Fill missing files
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  fill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build WAProto/index.js from WAProto.proto
+        run: |
+          mkdir -p /tmp/pb && cd /tmp/pb && npm init -y > /dev/null
+          npm install protobufjs@7 protobufjs-cli@1 --no-audit --no-fund
+          cd "$GITHUB_WORKSPACE/WAProto"
+          /tmp/pb/node_modules/.bin/pbjs -t static-module --no-beautify -w es6 --no-bundle --no-delimited --no-verify --no-comments -o ./index.js ./WAProto.proto
+          node ./fix-imports.js
+      - name: Copy the missing WAUSync files from the official package
+        run: |
+          mkdir -p /tmp/bl && cd /tmp/bl
+          npm pack @whiskeysockets/baileys@latest
+          tar xzf ./*.tgz
+          ls package/lib/WAUSync
+          cp -rn package/lib/WAUSync/. "$GITHUB_WORKSPACE/lib/WAUSync/"
+      - name: Commit the new files
+        run: |
+          git config user.name "whitekid"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A WAProto lib
+          git commit -m "Add generated WAProto and missing WAUSync files" || echo "nothing new"
+          git push
+      - name: Test that the socket loads
+        run: |
+          npm install --omit=dev --no-audit --no-fund
+          node -e "import('./whitekid/index.js').then(m => console.log('LOADED OK, makeWASocket is', typeof m.makeWASocket)).catch(e => { console.error(e); process.exit(1) })"
