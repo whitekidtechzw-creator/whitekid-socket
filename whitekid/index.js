@@ -7,7 +7,10 @@ import makeWASocket, {
     makeCacheableSignalKeyStore
 } from '../lib/index.js';
 
+import { printBanner } from './banner.js';
+
 export * from '../lib/index.js';
+export { printBanner };
 
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -30,10 +33,13 @@ export async function startWhitekid(opts = {}) {
         pairingCode = 'WHITEKID',
         browser = ['Whitekid Tech', 'Chrome', '1.0.0'],
         logger,
+        banner = true,
         maxBackoffMs = 30000,
         onCode, onQR, onReady, onClose, onMessage,
         socketOptions = {}
     } = opts;
+
+    if (banner) printBanner();
 
     let sock = null;
     let stopped = false;

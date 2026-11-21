@@ -1,0 +1,11 @@
+const g=require('./pairguard.js');
+let f=0;const ok=(c,m)=>{if(!c){f++;console.log('FAIL',m)}};
+ok(g.validateNumber('+263 78-984 6423').ok&&g.validateNumber('+263 78-984 6423').number==='263789846423','fmt');
+ok(!g.validateNumber('0789846423').ok,'leading 0');ok(!g.validateNumber('123').ok,'short');ok(!g.validateNumber('').ok,'empty');ok(!g.validateNumber('1'.repeat(16)).ok,'long');
+ok(g.mask('263789846423')==='2637*****423','mask '+g.mask('263789846423'));
+const mw=g.middleware({max:2});const mk=q=>{const r={code:200,h:{}};r.status=c=>{r.code=c;return r};r.json=o=>{r.body=o;return r};r.set=(k,v)=>{r.h[k]=v};return r};
+let nexts=0;const run=(ip,num)=>{const res=mk();mw({ip,query:{number:num}},res,()=>nexts++);return res};
+run('1.1.1.1','263789846423');run('1.1.1.1','263789846423');const third=run('1.1.1.1','263789846423');
+ok(nexts===2,'two passed');ok(third.code===429&&third.h['Retry-After'],'429');
+ok(run('2.2.2.2','263789846423').code===200&&nexts===3,'other ip ok');ok(run('3.3.3.3','0123').code===400,'400 invalid');
+console.log(f?'GUARD FAIL':'GUARD TESTS PASS');

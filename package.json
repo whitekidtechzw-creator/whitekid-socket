@@ -1,7 +1,7 @@
 {
   "name": "whitekid-sockets",
   "type": "module",
-  "version": "5.9.14",
+  "version": "1.0.0",
   "description": "A WhatsApp Web socket library for bots and automation, by Whitekid Tech (Zimbabwe). Pairing code login, interactive buttons, carousels, AI badge messages and multi-device sessions for Node.js.",
   "keywords": [
     "whatsapp api",

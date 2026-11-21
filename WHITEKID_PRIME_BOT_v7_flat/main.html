@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0E5A33">
+<title>WHITEKID PRIME — Pair your WhatsApp</title>
+<meta name="description" content="Link your WhatsApp to WHITEKID PRIME in under a minute. 600+ commands.">
+<style>
+:root{--green:#0E5A33;--green2:#0A4526;--sun:#FFC72C;--sun2:#FFE08A;--chalk:#F3F6F1;--ink:#14261B;--mute:#5B6E62;--line:#D5DDD3;--red:#C92A2A;--white:#fff}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:"Avenir Next","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;background:var(--chalk);color:var(--ink);min-height:100vh;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.top{background:var(--green);color:#fff;padding:max(18px,env(safe-area-inset-top)) 20px 92px;position:relative;overflow:hidden}
+.top::after{content:"";position:absolute;left:0;right:0;bottom:0;height:8px;background:linear-gradient(90deg,var(--sun) 0 25%,#E5484D 25% 50%,#000 50% 75%,#3FBF73 75%)}
+.wrap{max-width:560px;margin:0 auto}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.02em}
+.logo{width:42px;height:42px;border-radius:12px;object-fit:cover;background:var(--green2);border:2px solid rgba(255,255,255,.25)}
+.pill{display:inline-flex;gap:8px;align-items:center;font-size:.8rem;background:rgba(255,255,255,.12);padding:6px 12px;border-radius:99px;color:#E7F3EB}
+.dot{width:8px;height:8px;border-radius:50%;background:#9BB0A2}.dot.on{background:var(--sun);box-shadow:0 0 0 4px rgba(255,199,44,.25)}
+h1{font-size:clamp(2.1rem,9vw,3rem);line-height:1.04;letter-spacing:-.025em;margin:34px 0 10px;font-weight:850;max-width:12ch}
+.sub{margin:0;color:#CFE4D6;max-width:34ch;font-size:1.02rem}
+main{margin-top:-60px;padding:0 16px 8px}
+.card{background:var(--white);border-radius:20px;padding:24px 22px;box-shadow:0 1px 0 var(--line),0 24px 50px -24px rgba(14,60,36,.45)}
+label{display:block;font-size:.9rem;font-weight:700;margin-bottom:8px}
+.row{display:flex;gap:10px}
+select,input{font:inherit;color:var(--ink);background:var(--chalk);border:2px solid transparent;border-radius:12px;padding:13px 12px;outline:none;min-height:54px}
+select{max-width:46%}
+input{flex:1;min-width:0;font-size:1.15rem;font-weight:600;letter-spacing:.03em}
+select:focus,input:focus{border-color:var(--green);background:#fff}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;min-height:54px;font-weight:800}
+button:focus-visible,a:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.go{width:100%;margin-top:14px;background:var(--green);color:#fff;font-size:1.05rem;transition:background .15s,transform .08s}
+.go:hover{background:var(--green2)}.go:active{transform:translateY(1px)}.go:disabled{opacity:.65;cursor:not-allowed}
+.hint{font-size:.84rem;color:var(--mute);margin:10px 0 0}
+.msg{margin-top:14px;padding:12px 14px;border-radius:12px;font-size:.92rem;display:none}
+.msg.err{display:block;background:#FDECEC;color:#8E1B1B;border-left:4px solid var(--red)}
+.msg.ok{display:block;background:#E5F4EA;color:#0A4526;border-left:4px solid var(--green)}
+.msg.info{display:block;background:#FFF5D6;color:#5E4700;border-left:4px solid var(--sun)}
+.result{display:none;margin-top:4px}
+.result.show{display:block;animation:pop .35s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
+.plate{background:var(--sun);border-radius:16px;padding:20px 12px 0;text-align:center;overflow:hidden;box-shadow:inset 0 -2px 0 rgba(0,0,0,.08)}
+.plate small{display:block;font-size:.82rem;font-weight:700;color:#5E4700;margin-bottom:4px}
+.code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:clamp(2rem,10.5vw,3rem);font-weight:800;letter-spacing:.12em;color:var(--green2);user-select:all;word-break:break-all;line-height:1.15;padding-bottom:16px}
+.drain{height:7px;background:var(--green);transform-origin:left;transform:scaleX(1);transition:transform 1s linear}
+.timer{color:var(--mute);font-size:.9rem;margin:12px 0 14px}.timer b{color:var(--ink)}
+.actions{display:flex;gap:10px}.actions button{flex:1}
+.copy{background:var(--ink);color:#fff}.again{background:var(--chalk);color:var(--ink)}
+.steps{margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:14px;align-items:flex-start;padding:12px 0;color:var(--mute);font-size:.95rem;border-top:1px solid var(--line);transition:color .2s}
+.steps li:first-child{border-top:0}
+.steps li::before{content:counter(s);flex:0 0 28px;height:28px;border-radius:50%;background:var(--chalk);color:var(--mute);font-weight:800;font-size:.85rem;display:grid;place-items:center}
+.steps li.now{color:var(--ink);font-weight:600}.steps li.now::before{background:var(--sun);color:var(--ink)}
+.steps li.done::before{content:"✓";background:var(--green);color:#fff}
+.h2{font-weight:800;font-size:1.05rem;margin:0 0 6px}
+.sheet2{margin-top:16px}
+.facts{margin:18px 4px 0;color:var(--mute);font-size:.92rem}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.links a{text-decoration:none;font-size:.9rem;font-weight:600;padding:10px 16px;border-radius:99px;background:var(--white);box-shadow:inset 0 0 0 1.5px var(--line)}
+.links a:hover{box-shadow:inset 0 0 0 2px var(--green);color:var(--green)}
+footer{margin:28px auto 0;max-width:560px;padding:0 20px max(28px,env(safe-area-inset-bottom));color:var(--mute);font-size:.82rem}
+.spin{display:inline-block;width:16px;height:16px;border:3px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:r .7s linear infinite;vertical-align:-3px;margin-right:8px}
+@keyframes r{to{transform:rotate(360deg)}}
+@media(max-width:380px){.row{flex-direction:column}select{max-width:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="wrap">
+    <div class="bar">
+      <div class="brand"><img class="logo" id="logo" alt="" src="https://files.catbox.moe/3hn4a7.jpg" onerror="this.style.display='none'">WHITEKID PRIME</div>
+      <div class="pill"><span class="dot" id="dot"></span><span id="stat">Checking server…</span></div>
+    </div>
+    <h1>Pair your WhatsApp</h1>
+    <p class="sub">Get a code, type it into WhatsApp, and the bot is yours in under a minute.</p>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="card s1" id="formCard">
+    <label for="num">Your WhatsApp number</label>
+    <div class="row">
+      <select id="cc" aria-label="Country code"></select>
+      <input id="num" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="78 984 6423" maxlength="18">
+    </div>
+    <p class="hint">Enter it without the leading 0. Pair only a number you own.</p>
+    <button class="go" id="go" type="button">Get pairing code</button>
+    <div class="msg" id="msg" role="status" aria-live="polite"></div>
+
+    <div class="result" id="result">
+      <div class="plate">
+        <small>Your pairing code</small>
+        <div class="code" id="code">----</div>
+        <div class="drain" id="bar"></div>
+      </div>
+      <div class="timer" id="timer"></div>
+      <div class="actions">
+        <button class="copy" id="copy" type="button">Copy code</button>
+        <button class="again" id="again" type="button">New number</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card sheet2">
+    <h2 class="h2">How to link</h2>
+    <ol class="steps">
+      <li id="step1" class="now"><span>Enter your number above and tap <b> Get pairing code</b>.</span></li>
+      <li id="step2"><span>Open WhatsApp, then <b> Settings → Linked devices</b>.</span></li>
+      <li id="step3"><span>Tap <b> Link a device</b>, then <b> Link with phone number instead</b>.</span></li>
+      <li id="step4"><span>Type the 8-character code. A welcome message confirms you are connected. Then send <b> .menu</b>.</span></li>
+    </ol>
+  </section>
+
+  <p class="facts">600+ commands, AI chat and image tools, running 24/7.</p>
+
+  <nav class="links" aria-label="Contact">
+    <a href="https://wa.me/263789846423" target="_blank" rel="noopener">💬 Owner</a>
+    <a href="https://t.me/whitekid01" target="_blank" rel="noopener">✈️ Telegram</a>
+    <a href="https://whatsapp.com/channel/0029Vb86qKOA89Mi8iCgNe1R" target="_blank" rel="noopener">📢 Channel</a>
+    <a href="https://chat.whatsapp.com/BnGr96zHiz075lNTZzvRUN" target="_blank" rel="noopener">👥 Group</a>
+  </nav>
+</main>
+
+<footer>© 2026 WhiteKid Tech. Never share your pairing code with anyone.</footer>
+
+<script>
+(function(){
+  'use strict';
+  var COUNTRIES=[['ZW','🇿🇼','263','Zimbabwe'],['ZA','🇿🇦','27','South Africa'],['ZM','🇿🇲','260','Zambia'],['BW','🇧🇼','267','Botswana'],['MZ','🇲🇿','258','Mozambique'],['MW','🇲🇼','265','Malawi'],['NA','🇳🇦','264','Namibia'],['AO','🇦🇴','244','Angola'],['TZ','🇹🇿','255','Tanzania'],['KE','🇰🇪','254','Kenya'],['UG','🇺🇬','256','Uganda'],['RW','🇷🇼','250','Rwanda'],['ET','🇪🇹','251','Ethiopia'],['NG','🇳🇬','234','Nigeria'],['GH','🇬🇭','233','Ghana'],['EG','🇪🇬','20','Egypt'],['MA','🇲🇦','212','Morocco'],['SN','🇸🇳','221','Senegal'],['CM','🇨🇲','237','Cameroon'],['CD','🇨🇩','243','DR Congo'],['SZ','🇸🇿','268','Eswatini'],['LS','🇱🇸','266','Lesotho'],['MG','🇲🇬','261','Madagascar'],['MU','🇲🇺','230','Mauritius'],['US','🇺🇸','1','USA / Canada'],['GB','🇬🇧','44','United Kingdom'],['DE','🇩🇪','49','Germany'],['FR','🇫🇷','33','France'],['IN','🇮🇳','91','India'],['PK','🇵🇰','92','Pakistan'],['AE','🇦🇪','971','UAE'],['SA','🇸🇦','966','Saudi Arabia'],['BR','🇧🇷','55','Brazil'],['ID','🇮🇩','62','Indonesia'],['AU','🇦🇺','61','Australia']];
+  var $=function(id){return document.getElementById(id)};
+  var cc=$('cc'),num=$('num'),go=$('go'),msg=$('msg'),result=$('result'),codeEl=$('code'),timerEl=$('timer');
+  var tTimer=null,pTimer=null,busy=false,CODE_SECONDS=60;
+  var bar=$('bar');
+  function stage(n){$('formCard').className='card s'+n;for(var i=1;i<=4;i++){var s=$('step'+i);if(s)s.className=i<n?'done':(i===n?'now':'')}}
+
+  COUNTRIES.forEach(function(c){var o=document.createElement('option');o.value=c[2];o.textContent=c[1]+' +'+c[2]+' '+c[3];cc.appendChild(o)});
+  cc.value='263';
+
+  function show(kind,text){msg.className='msg '+kind;msg.textContent=text}
+  function clearMsg(){msg.className='msg';msg.textContent=''}
+  function fullNumber(){
+    var local=num.value.replace(/[^0-9]/g,'').replace(/^0+/,'');
+    // user pasted a full international number starting with the country code
+    if(local.indexOf(cc.value)===0 && local.length>=cc.value.length+8) return local;
+    return cc.value+local;
+  }
+  function stop(){clearInterval(tTimer);clearInterval(pTimer);tTimer=pTimer=null}
+  stage(1);
+  function setBusy(b){busy=b;go.disabled=b;go.innerHTML='';
+    if(b){var s=document.createElement('span');s.className='spin';go.appendChild(s);go.appendChild(document.createTextNode('Requesting code…'))}
+    else go.textContent='Get pairing code'}
+
+  function fmtCode(c){c=String(c).replace(/[^A-Za-z0-9]/g,'').toUpperCase();return c.length===8?c.slice(0,4)+'-'+c.slice(4):c}
+
+  function startCountdown(){
+    var left=CODE_SECONDS;
+    function tick(){
+      if(left<=0){stop();timerEl.textContent='';var b=document.createElement('b');b.textContent='Code expired';timerEl.appendChild(b);timerEl.appendChild(document.createTextNode(' — tap “Get pairing code” for a new one.'));bar.style.transform='scaleX(0)';stage(1);go.style.display='';return}
+      timerEl.textContent='';timerEl.appendChild(document.createTextNode('Enter it in WhatsApp within '));var b=document.createElement('b');b.textContent=left+'s';timerEl.appendChild(b);bar.style.transform='scaleX('+(left/CODE_SECONDS)+')';left--;
+    }
+    tick();tTimer=setInterval(tick,1000);
+  }
+  function pollStatus(n){
+    var tries=0;
+    pTimer=setInterval(function(){
+      if(++tries>70){clearInterval(pTimer);return}
+      fetch('/status?number='+n,{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){
+        if(j&&j.connected){stop();show('ok','✅ Connected! Check WhatsApp for the welcome message, then send .menu');timerEl.textContent='';codeEl.textContent='LINKED ✔';bar.style.transform='scaleX(0)';stage(5)}
+      }).catch(function(){});
+    },3000);
+  }
+
+  function request(){
+    if(busy)return; clearMsg(); stop(); result.classList.remove('show');
+    var n=fullNumber();
+    if(n.length<9||n.length>15){show('err','Enter a valid WhatsApp number (without the leading 0).');return}
+    setBusy(true);
+    fetch('/?number='+encodeURIComponent(n),{cache:'no-store'}).then(function(r){return r.json().then(function(j){return{status:r.status,body:j}})}).then(function(r){
+      setBusy(false);var j=r.body||{};
+      if(r.status===429){show('err',j.error||'Too many attempts. Please wait a few minutes.');return}
+      if(r.status>=400){show('err',j.error||'Something went wrong. Try again.');return}
+      if(j.status==='already_connected'){show('ok','✅ This number is already connected to the bot. Send .menu in WhatsApp.');return}
+      if(!j.code){show('err','Could not get a code right now. Check the number and try again in a moment.');return}
+      codeEl.textContent=fmtCode(j.code);result.classList.add('show');go.style.display='none';stage(3);
+      show('info','Open WhatsApp → Linked devices → Link a device → Link with phone number instead.');
+      startCountdown();pollStatus(n);
+    }).catch(function(){setBusy(false);show('err','Cannot reach the server. Check your internet and try again.')});
+  }
+
+  go.addEventListener('click',request);
+  num.addEventListener('keydown',function(e){if(e.key==='Enter')request()});
+  $('again').addEventListener('click',function(){stop();stage(1);result.classList.remove('show');go.style.display='';clearMsg();num.value='';num.focus()});
+  $('copy').addEventListener('click',function(){
+    var t=codeEl.textContent.replace(/-/g,''),btn=$('copy');
+    function done(){btn.textContent='Copied ✔';setTimeout(function(){btn.textContent='Copy code'},1600)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,fallback)}else fallback();
+    function fallback(){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(ta)}
+  });
+
+  fetch('/ping',{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){
+    $('dot').className='dot on';$('stat').textContent='Online · '+(j.activesession||0)+' active session'+((j.activesession||0)===1?'':'s');
+  }).catch(function(){$('stat').textContent='Server not reachable'});
+})();
+</script>
+</body>
+</html>
