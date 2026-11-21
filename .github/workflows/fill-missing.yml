@@ -35,3 +35,9 @@ jobs:
         run: |
           npm install --omit=dev --no-audit --no-fund
           node -e "import('./whitekid/index.js').then(m => console.log('LOADED OK, makeWASocket is', typeof m.makeWASocket)).catch(e => { console.error(e); process.exit(1) })"
+      - name: Test that the socket loads
+        run: |
+          npm pack --silent
+          mkdir /tmp/app && cd /tmp/app && npm init -y > /dev/null
+          npm install "$GITHUB_WORKSPACE"/whitekid-sockets-*.tgz --no-audit --no-fund
+          node -e "import('whitekid-sockets').then(m => console.log('LOADED OK, makeWASocket is', typeof m.makeWASocket)).catch(e => { console.error(e); process.exit(1) })"
